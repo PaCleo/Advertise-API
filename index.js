@@ -14,4 +14,7 @@ require('./controller/projectController')(app);
 require('./controller/productcontroller')(app);
 
 
-app.listen(3002);
+const port = 3002;
+app.listen(port, () => {
+  console.log(`Servidor backend escutando na porta ${port}`);
+});
