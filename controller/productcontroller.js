@@ -31,7 +31,7 @@ router.get('/userproduct', authMiddleware, async (req, res) => {
     try {
         const user = await User.findOne({
             where: {
-                id: req.user.id
+                id: req.userId
             },
             include: [Product]
         });
