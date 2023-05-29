@@ -27,7 +27,7 @@ router.post('/productreg', authMiddleware, async (req, res) => {
     }
 });
 
-router.get('/add/userproduct', authMiddleware, async (req, res) => {
+router.get('/userproduct', authMiddleware, async (req, res) => {
     try {
         const user = await User.findOne({
             where: {
