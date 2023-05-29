@@ -36,7 +36,7 @@ router.get('/userproduct', authMiddleware, async (req, res) => {
             include: [Product]
         });
 
-        const products = user.Products.map(product => {
+        const products = user.products.map(product => {
             const productObj = product.toJSON();
             productObj.picPath = product.picPath;
             return productObj;
