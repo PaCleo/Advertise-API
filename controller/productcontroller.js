@@ -145,7 +145,7 @@ router.patch('/product/:id', authMiddleware, upload.single("image"), async (req,
         }
 
         if (req.file) {
-            const imagePath = image.path;
+            const imagePath = req.file.path;
             const imageBuffer = fs.readFileSync(imagePath);
             product.pic = imageBuffer;
             await product.save();
