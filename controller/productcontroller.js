@@ -145,9 +145,10 @@ router.patch('/product/:id', authMiddleware, upload.single("image"), async (req,
             });
         }
 
-        if (image) {
-            const imagePath = image.path;
-            const imageBuffer = fs.readFileSync(imagePath);
+        if (req.file) {
+            /*const imagePath = image.path;
+            const imageBuffer = fs.readFileSync(imagePath);*/
+            const imageBuffer = req.file.buffer
             product.pic = imageBuffer;
             await product.save();
             console.log("Image saved in the database");
