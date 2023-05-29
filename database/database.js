@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('advertise', 'pacleo', 'ufsm160801', {
-    dialect: 'mysql',
-    host: 'advertise1.c52zjqcj3gqn.sa-east-1.rds.amazonaws.com',
-    port: 3316,
+    dialect: 'mssql',
+    host: '127.0.0.1',
+    port: 3306,
 });
 sequelize.authenticate().then(() => {
     console.log('Connection has been established successfully.');
