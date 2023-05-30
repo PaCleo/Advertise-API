@@ -36,13 +36,21 @@ router.get('/userproduct', authMiddleware, async (req, res) => {
             include: [Product]
         });
 
-        const products = user.products.map(product => {
-            const productObj = product.toJSON();
-            productObj.picPath = product.picPath;
-            return productObj;
+        const productsWithImages = user.products.map(product => {
+            const mimeType = 'image/jpg';
+            let dataUri = '';
+            if (product.pic !== null) {
+                const imageBuffer = product.pic;
+                const imageBase64 = imageBuffer.toString('base64');
+                dataUri = `data:${mimeType};base64,${imageBase64}`;
+              }
+            return {
+                ...product.toJSON(),
+                image: dataUri
+            };
         });
 
-        res.status(200).json({ products });
+        return res.send({ products: productsWithImages });
     } catch (err) {
         console.log(err);
         res.status(500).send('Internal server error');
